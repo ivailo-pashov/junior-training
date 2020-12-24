@@ -1,4 +1,4 @@
-package com.epam.functionalprogramming.example3scope;
+package com.epam.functionalprogramming.example4capturing;
 
 public class ScopeExample4 {
 

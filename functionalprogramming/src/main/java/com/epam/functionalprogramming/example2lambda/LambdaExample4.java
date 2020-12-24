@@ -6,6 +6,10 @@ public class LambdaExample4 {
 
         //specify lambda interface
 
+        GreetingsProvider2 provider = x -> "Greetings from " + x;
+        
+        printGreetings((Integer x) -> "Greetings from " + x);
+
     }
 
     private static void printGreetings(GreetingsProvider provider) {
@@ -13,7 +17,7 @@ public class LambdaExample4 {
     }
 
     private static void printGreetings(GreetingsProvider2 provider) {
-        System.out.println(provider.greet("Jane"));
+        System.out.println(provider.greet(5));
     }
 
     private interface GreetingsProvider {
@@ -23,6 +27,6 @@ public class LambdaExample4 {
 
     private interface GreetingsProvider2 {
 
-        String greet(String from);
+        String greet(Integer from);
     }
 }

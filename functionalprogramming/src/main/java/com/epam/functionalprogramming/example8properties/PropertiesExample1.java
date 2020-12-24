@@ -1,34 +1,17 @@
 package com.epam.functionalprogramming.example8properties;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PropertiesExample1 {
 
-    private static Date lastYearAndMonth;
-    private static Date lastResult;
-
-    private static Date getMonthHalfEnd(Date yearAndMonth) {
-
-        if (yearAndMonth.equals(lastYearAndMonth)) {
-            return lastResult;
-        } else {
-            lastYearAndMonth = new Date(yearAndMonth.getTime());
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(yearAndMonth);
-
-        int monthDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    //2018-02-03
+    //2018-03-03
+    //2018-03-01
+    //2018-02-29
+    private static boolean isFirstHalfOfMonth(LocalDate date) {
+        int dayOfMonth = date.getDayOfMonth();
+        int monthDays = date.plusMonths(1).withDayOfMonth(1).minusDays(1).getDayOfMonth();
         int monthHalf = monthDays / 2;
-
-        Calendar today = Calendar.getInstance();
-        int currentDayOfMonth = today.get(Calendar.DAY_OF_MONTH);
-        calendar.set(Calendar.DAY_OF_MONTH, currentDayOfMonth > monthHalf ? monthDays : monthHalf);
-
-        yearAndMonth.setTime(calendar.getTimeInMillis());
-
-        lastResult = yearAndMonth;
-        return yearAndMonth;
+        return dayOfMonth <= monthHalf;
     }
 }

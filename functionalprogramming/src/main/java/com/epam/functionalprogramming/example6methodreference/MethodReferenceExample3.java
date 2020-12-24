@@ -1,5 +1,8 @@
 package com.epam.functionalprogramming.example6methodreference;
 
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
 public class MethodReferenceExample3 {
 
     public static void main(String[] args) {
@@ -11,26 +14,18 @@ public class MethodReferenceExample3 {
     }
 
     private static void updateFirstName(Person person) {
-        if (person == null) {
-            return;
-        }
-        String name = person.getFirstName();
-        if (name == null || name.isEmpty()) {
-            return;
-        }
-        if (name.length() > 10) {
-            name = name.substring(0, 10);
-        }
-        name = name.toLowerCase();
-        name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        person.setFirstName(name);
+        updateName(person, Person::getFirstName, Person::setFirstName);
     }
 
     private static void updateLastName(Person person) {
+        updateName(person, Person::getLastName, Person::setLastName);
+    }
+    
+    private static void updateName(Person person, Function<Person, String> getter, BiConsumer<Person, String> setter) {
         if (person == null) {
             return;
         }
-        String name = person.getLastName();
+        String name = getter.apply(person);
         if (name == null || name.isEmpty()) {
             return;
         }
@@ -39,7 +34,7 @@ public class MethodReferenceExample3 {
         }
         name = name.toLowerCase();
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        person.setLastName(name);
+        setter.accept(person, name);
     }
 
     private static class Person {

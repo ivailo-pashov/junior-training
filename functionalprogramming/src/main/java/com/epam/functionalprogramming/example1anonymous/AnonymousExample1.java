@@ -4,6 +4,14 @@ public class AnonymousExample1 {
 
     public static void main(String[] args) {
 
+        int localVariable = 5;
+        GreetingsProvider provider = new GreetingsProvider() {
+
+            @Override
+            public String greet(String from) {
+                return from + localVariable;
+            }
+        };
     }
 
     private static void printGreetings(GreetingsProvider provider) {

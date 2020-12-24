@@ -4,16 +4,20 @@ public class LambdaExample1 {
 
     public static void main(String[] args) {
 
-        //simplest form
+        GreetingsProvider provider = x -> "Greetings from " + x;
+        printGreetings(x -> "Greetings from " + x);
 
-        //with braces
+        provider = (x) -> "Greetings from " + x;
 
-        //assign to variable
-
+        doSthm("x" + 5);
     }
 
     private static void printGreetings(GreetingsProvider provider) {
         System.out.println(provider.greet("Jane"));
+    }
+    
+    static void doSthm(String param) {
+        
     }
 
     private interface GreetingsProvider {

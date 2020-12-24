@@ -1,5 +1,7 @@
 package com.epam.functionalprogramming.example10collections;
 
+import java.util.Comparator;
+
 public class CollectionsExample3 {
 
     public static void main(String[] args) {
@@ -8,6 +10,11 @@ public class CollectionsExample3 {
         //sort by firstName ASC and print to console
 
         //sort by lastName DESC, age ASC and print to console
+        
+        //ORDER BY age DESC, first_name ASC
+        Comparator.comparing(Person::getAge).reversed()
+            .thenComparing(Person::getFirstName);
+        
     }
 
     private static class Person {

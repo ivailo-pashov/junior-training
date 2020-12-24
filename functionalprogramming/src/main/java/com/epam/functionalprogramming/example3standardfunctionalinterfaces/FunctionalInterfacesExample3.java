@@ -1,4 +1,6 @@
-package com.epam.functionalprogramming.example4standardfunctionalinterfaces;
+package com.epam.functionalprogramming.example3standardfunctionalinterfaces;
+
+import java.util.function.Supplier;
 
 public class FunctionalInterfacesExample3 {
 
@@ -7,6 +9,8 @@ public class FunctionalInterfacesExample3 {
         //get rid of GreetingsProvider
 
         //refer printGreetings as Consumer
+
+        Supplier<String> provider;
     }
 
     private static void printGreetings(GreetingsProvider provider) {

@@ -1,20 +1,31 @@
 package com.epam.functionalprogramming.example6methodreference;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiFunction;
+
 public class MethodReferenceExample4Constructor {
 
-    public static void main(String[] args) {
+    private static final Map<Type, BiFunction<String, String, Person>> constructors =
+        new HashMap<Type, BiFunction<String, String, Person>>() {{
+            put(Type.EMPLOYEE, Employee::new);
+            put(Type.STUDENT, Student::new);
+        }};
 
+    public static void main(String[] args) {
+        //use method references to refer to constructor
     }
 
     private static Person create(String firstName, String lastName, Type type) {
-        switch (type) {
-            case EMPLOYEE:
-                return new Employee(firstName, lastName);
-            case STUDENT:
-                return new Student(firstName, lastName);
-            default:
-                throw new IllegalArgumentException();
-        }
+        return constructors.get(type).apply(firstName, lastName);
+        //        switch (type) {
+        //            case EMPLOYEE:
+        //                return new Employee(firstName, lastName);
+        //            case STUDENT:
+        //                return new Student(firstName, lastName);
+        //            default:
+        //                throw new IllegalArgumentException();
+        //        }
     }
 
     private enum Type {

@@ -1,6 +1,8 @@
 package com.epam.functionalprogramming.example6methodreference;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public class MethodReferenceExample3Bouns {
 
@@ -17,46 +19,22 @@ public class MethodReferenceExample3Bouns {
     }
 
     private static void updateName(City city) {
-        if (city == null) {
-            return;
-        }
-        String name = city.getName();
-        if (name == null || name.isEmpty()) {
-            return;
-        }
-        if (name.length() > 10) {
-            name = name.substring(0, 10);
-        }
-        name = name.toLowerCase();
-        name = name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
-        if (!Objects.equals(name, city.getName())) {
-            city.setName(name);
-        }
+        updateName(city, City::getName, City::setName);
     }
 
     private static void updateFirstName(Person person) {
-        if (person == null) {
-            return;
-        }
-        String name = person.getFirstName();
-        if (name == null || name.isEmpty()) {
-            return;
-        }
-        if (name.length() > 10) {
-            name = name.substring(0, 10);
-        }
-        name = name.toLowerCase();
-        name = name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
-        if (!Objects.equals(name, person.getFirstName())) {
-            person.setFirstName(name);
-        }
+        updateName(person, Person::getFirstName, Person::setFirstName);
     }
 
     private static void updateLastName(Person person) {
-        if (person == null) {
+        updateName(person, Person::getLastName, Person::setLastName);
+    }
+
+    private static <T> void updateName(T object, Function<T, String> getter, BiConsumer<T, String> setter) {
+        if (object == null) {
             return;
         }
-        String name = person.getLastName();
+        String name = getter.apply(object);
         if (name == null || name.isEmpty()) {
             return;
         }
@@ -64,10 +42,8 @@ public class MethodReferenceExample3Bouns {
             name = name.substring(0, 10);
         }
         name = name.toLowerCase();
-        name = name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
-        if (!Objects.equals(name, person.getLastName())) {
-            person.setLastName(name);
-        }
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        setter.accept(object, name);
     }
 
     private static class City {

@@ -1,4 +1,4 @@
-package com.epam.functionalprogramming.example3scope;
+package com.epam.functionalprogramming.example4capturing;
 
 public class ScopeExample2 {
 
@@ -6,9 +6,11 @@ public class ScopeExample2 {
         //refer to local variable in GreetingsProvider lambda
 
         int local = 5;
-        //refer to local variable in GreetingsProvider lambda
+        GreetingsProvider provider2 = prefix -> local + "";
 
         //try updating local
+        
+        
 
     }
 

@@ -4,8 +4,16 @@ public class LambdaExample3 {
 
     public static void main(String[] args) {
         //print OK to console
+        
+        
+        Task printToConsole = () -> System.out.println("Nothing happened");
+
+        printToConsole.execute();
 
         //do nothing
+
+
+        Task doNothing = () -> {};
 
         //call cache()
 

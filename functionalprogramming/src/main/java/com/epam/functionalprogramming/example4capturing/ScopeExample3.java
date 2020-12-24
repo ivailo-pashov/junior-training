@@ -1,4 +1,4 @@
-package com.epam.functionalprogramming.example3scope;
+package com.epam.functionalprogramming.example4capturing;
 
 public class ScopeExample3 {
 
@@ -9,6 +9,12 @@ public class ScopeExample3 {
     public static void main(String[] args) {
         //create ScopeExample3 instance and printGreetings
 
+        ScopeExample3 example = new ScopeExample3();
+        example.print();
+        
+        example.field = 6;
+        example.print();
+
         //update "field" to 6 and printGreetings
     }
 
@@ -16,6 +22,11 @@ public class ScopeExample3 {
         System.out.println(provider.greet("Greetings "));
     }
 
+    void print() {
+        GreetingsProvider provider = x -> x + this.field;
+        printGreetings(provider);
+    }
+    
     private interface GreetingsProvider {
 
         String greet(String prefix);

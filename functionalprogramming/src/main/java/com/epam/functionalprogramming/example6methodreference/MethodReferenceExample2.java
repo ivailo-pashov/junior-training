@@ -1,12 +1,25 @@
 package com.epam.functionalprogramming.example6methodreference;
 
 import java.time.LocalTime;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MethodReferenceExample2 {
 
     public static void main(String[] args) {
         //create two Person instances
+        
+        Person p1 = new Person("John", "Doe");
+        Person p2 = new Person("Marry", "Poppins");
+        
+        Supplier<String> nameSupplier = p1::fullName;
+        Supplier<String> nameSupplier2 = () -> p1.fullName();
+
+        System.out.println(nameSupplier2.get());
+
+        Function<Person, String> nameFunction = person -> person.fullName();
+        Function<Person, String> nameFunction2 = Person::fullName;
+        System.out.println(nameFunction2.apply(p2));
 
         //printGreetings from first Person by firstName
 
@@ -15,6 +28,7 @@ public class MethodReferenceExample2 {
         //printGreetings from first Person by fullName
 
         //printGreetings from Sofia city
+        
     }
 
     private static void printGreetings(Supplier<String> fromSupplier) {
