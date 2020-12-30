@@ -43,7 +43,7 @@ public class Employee {
     }
 
     public Set<Skill> getSkills() {
-        return skills == null ? Collections.emptySet() : skills;
+        return skills == null ? Collections.emptySet() : Collections.unmodifiableSet(skills);
     }
 
     public void setSkills(Set<Skill> skills) {
@@ -51,7 +51,7 @@ public class Employee {
     }
 
     public Set<Employee> getSubordinates() {
-        return subordinates == null ? Collections.emptySet() : subordinates;
+        return subordinates == null ? Collections.emptySet() : Collections.unmodifiableSet(subordinates);
     }
 
     public void setSubordinates(Set<Employee> subordinates) {
@@ -80,6 +80,10 @@ public class Employee {
 
     public void setYearsOfExperience(int yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public String fullName() {
+        return firstName + " " + lastName;
     }
 
     @Override
