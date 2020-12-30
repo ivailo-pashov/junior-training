@@ -27,7 +27,7 @@ public class EmployeeService {
     /**
      * @return all unique last names of employees sorted by name in ascending order
      */
-    public List<String> findAllEmployeesUniqueLastNames(int yearsOfExperience) {
+    public List<String> findAllEmployeesUniqueLastNames() {
         return Collections.emptyList(); //TODO implementation
     }
 
