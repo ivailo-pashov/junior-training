@@ -9,9 +9,9 @@ public class Employee {
     private String firstName;
     private String lastName;
     private Set<Skill> skills;
-    
+
     /**
-        if this is empty, then assume the employee is not managing anyone
+     * if this is empty, then assume the employee is not managing anyone
      */
     private Set<Employee> subordinates = Collections.emptySet();
     private Role role;
@@ -101,5 +101,10 @@ public class Employee {
     @Override
     public int hashCode() {
         return Long.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + id + "=" + fullName() + '}';
     }
 }
