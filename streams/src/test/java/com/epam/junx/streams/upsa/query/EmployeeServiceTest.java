@@ -1,13 +1,5 @@
 package com.epam.junx.streams.upsa.query;
 
-import static com.epam.junx.streams.upsa.domain.Role.DEVELOPER;
-import static com.epam.junx.streams.upsa.domain.Role.MANAGER;
-import static com.epam.junx.streams.upsa.domain.Role.TEST_ENGINEER;
-import static com.epam.junx.streams.upsa.domain.Title.JUNIOR;
-import static com.epam.junx.streams.upsa.domain.Title.LEAD;
-import static com.epam.junx.streams.upsa.domain.Title.REGULAR;
-import static com.epam.junx.streams.upsa.domain.Title.SENIOR;
-
 import com.epam.junx.streams.upsa.domain.Employee;
 import com.epam.junx.streams.upsa.domain.Role;
 import com.epam.junx.streams.upsa.domain.Skill;
@@ -15,18 +7,16 @@ import com.epam.junx.streams.upsa.domain.Title;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+import static com.epam.junx.streams.upsa.domain.Role.*;
+import static com.epam.junx.streams.upsa.domain.Title.*;
 
 class EmployeeServiceTest {
 
@@ -668,6 +658,7 @@ class EmployeeServiceTest {
                 ImmutableMap.of()
         );
     }
+
     @Test
     void task_10_FindTotalSkillsYearsPerTeam_Base() {
         ImmutableList<Employee> employees = ImmutableList.of(
@@ -1064,6 +1055,7 @@ class EmployeeServiceTest {
         employee.setYearsOfExperience(yearsOfExperience);
         return employee;
     }
+
     private static Skill skill(String skillName, int yearsOfSkill) {
         Skill skill = new Skill(skillName);
         skill.setYearsOfExperience(yearsOfSkill);
